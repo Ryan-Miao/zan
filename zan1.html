@@ -1,72 +1,369 @@
-<head>
 
-</head>
-<body>
-
-
-
-
-
-
-<form action="http://1212.ip138.com/ic.asp" method="get" id="ipform" target="ip">
-	<input type="submit" value="get ip" />
-</form>
-<iframe id = "ipframe" name="ip" style="height: auto; width:auto;">
-<span id="ipspan"></span>
-</iframe>
-
-<hr/>
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
 
 
+    <title>助力点赞</title>
 
-<iframe name="result" style="height: 10%; width:100%;">
+    <!-- Bootstrap core CSS -->
+    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
 
-</iframe>
+    
+    <!-- Custom styles for this template -->
+    <style type="text/css">
+			body {
+			  padding-top: 20px;
+			  padding-bottom: 20px;
+			}
+
+			.navbar {
+			  margin-bottom: 20px;
+			}
+			.footer {
+			  padding-top: 19px;
+			  color: #777;
+			  border-top: 1px solid #e5e5e5;
+			}
+	</style>
+
+   
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
 
 
 
+  <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">点赞</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li class="dropdown-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
+              <li><a href="../navbar-static-top/">Static top</a></li>
+              <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>步骤</h1>
+        <p>
+        	点击赞即可刷赞，uid为选手id，openid为朋友的微信token，这些默认选项就好。ip为当前手机的ip，
+	        为了防止因为ip相同被封号，所以每次都应该以不同的ip点赞。解决方案目前是开启飞行模式5s，
+	        然后再点赞。返回值中status为1表示点赞成功。
+        </p>
+        <p>
+          <a class="btn btn-lg btn-primary"  role="button" id="btn_zan">赞(<span id="sum">0</span>)</a>
+          <a class="btn btn-lg btn-info"  href="#ip-history">查看已使用ip列表</a>
+          <a class="btn btn-lg btn-success" href="http://gm4.bymvr.cn/support/index.aspx?id=232&uid=58969&code=001L8h221681FL1oUn3217oe221L8h2X">查看排名</a>
+        </p>
+      </div>
+
+    </div> <!-- /container -->
+
+    <div class="container">
+   		<div class="container">
+			<form method="post" target="result" id="form"  class="form-horizontal">
+				<div class="form-group">
+				    <label for="uid" class="col-sm-2 control-label">uid</label>
+				    <div class="col-sm-10">
+				      <input type="uid" class="form-control" id="uid" placeholder="58969">
+				    </div>
+				 </div>
+				<div class="form-group">
+				    <label for="openid" class="col-sm-2 control-label">openid</label>
+				    <div class="col-sm-10">
+				      <input type="openid" class="form-control" id="openid"  placeholder="">
+				    </div>
+				 </div>
+				 <div class="form-group">
+				    <label for="当前IP" class="col-sm-2 control-label">IP</label>
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" readonly="true" id="ip">
+				    </div>
+				 </div>
+			</form>
+        </div>
+        <div class="container-fluid">
+			  <iframe name="result" style="width:100%;">
+				
+			  </iframe>
+        </div>
 
 
-openid: <span id="openid"></span>
-<form method="post" target="result" id="form">
-	<input type="text" value ="58969" id = "uid"/>
-	<input type="button" value="generate" onclick="zan()"/>
-</form>
 
+        <div class="panel panel-success" >
+		  <!-- Default panel contents -->
+		  <div class="panel-heading">IP HISTORY</div>
+		  <div class="panel-body">
+		    <p>本机ip历史记录</p>
+		  </div>
 
+		  <!-- Table -->
+		  <div id="ip-history" class="table-responsive">
+			  <table class="table table-striped table-bordered table-hover table-condensed" >
+			  	<thead>
+			  		<tr>
+			    		<th>ip</th>
+			    		<th>time</th>		    	
+			    	</tr>
+			  	</thead>
+			  	<tbody id="ip_table">
+			  		
+			  	</tbody>
+			    
+			  </table>
+		  </div>
+		</div>
 
+      <footer class="footer">
+        <p>&copy; 2016 Com-Test, Inc.</p>
+      </footer>
+
+    </div> <!-- /container -->
 
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<script>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/handlebars.js/2.0.0-alpha.4/handlebars.min.js"></script>
 
-var sum = 0;
+<script id="item_ip" type="text/x-handlebars-template">  
+	<tr>
+		<td>{{ip}}</td>
+		<td>{{time}}</td>
+	</tr>
+</script>
 
-function sip() {
-	$("#ipform").submit();
+
+
+ <script>
+
+var zan={
+	uid: 58969,
+	openid: "",
+	ip_info: {
+		ip: "",
+		time: ""
+	},
+	ip_list_key: "ip_list_str",
+	ip_list: [],
+	sum: 0,
+	count: 0,
+	/**连续点击阀值**/
+	threshold: 20,
+	/**获取ip**/
+	getIp: function(){ 
+		var ipVal = "";
+		var ip_url2 = "http://120.27.213.192:9101/ip";
+	    var options = {  
+	        type: "get",
+	        url: ip_url2,  
+	        async:false,  
+	        success: function (result) {  
+	            if (result.code != 0) {
+	            	console.log("获取ip失败，try ipinfo");
+	            	ipVal = getIpinfo();	            
+	            }else{
+					ipVal = result.data;
+	            }
+
+	        },  
+	        dataType: "json",  
+	        error: function (result) {  
+	            console.log("获取ip失败，try ipinfo");
+	            ipVal =  getIpinfo();	            
+	        }  
+	    };  
+	    $.ajax(options); 
+	    $("#ip").val(ipVal);   
+	    return ipVal;
+	},
+	generateOpenid: function(){
+		this.openid = r(false, 28);
+	},
+	appendIpItem: function(item){
+		//用jquery获取模板
+		var tpl   =  $("#item_ip").html();
+		//预编译模板
+		var template = Handlebars.compile(tpl);
+		//模拟json数据
+		var context = item;
+		//匹配json内容
+		var trcontent = template(context);
+		//输入模板
+		$("#ip_table").prepend(trcontent);
+	},
+	pushToHistory: function(ip){
+		var time = new Date().Format("yyyy-MM-dd hh:mm:ss"); 
+		var item = {
+			ip: ip,
+			time: time 
+		}; 
+		this.ip_info = item;
+		this.ip_list.push(item);
+
+		//存放到localStorage
+		var ip_list_json = JSON.stringify(this.ip_list);
+		window.localStorage.setItem(this.ip_list_key, ip_list_json);
+		
+		this.appendIpItem(item);
+	},
+	confirmIpUsage: function(ip){
+		var ip_list = zan.ip_list;
+		var len = ip_list.length;
+		//取出最近几个ip比较
+		for (var i = len - 1; i >= 0 && i >= len -zan.threshold; i--) {
+			var item = ip_list[i];
+			if (ip == item.ip) {
+				alert("本次ip已经在"+item.time + "使用过，请开启飞行模式3s后关闭飞行模式，再点击。");
+				return true;
+			}
+		}
+
+		return false;
+	},
+	likeIt: function(){
+		if(this.count >= this.threshold){
+			alert("已经连续点赞"+ count +"次了，休息下");
+			count = 0;
+			return;
+		}
+
+		var ip_old = zan.ip_info.ip;
+		var ip_new = zan.getIp();
+		if (!ip_new) {
+			alert("获取ip失败");
+			return;
+		}
+
+		var usage = zan.confirmIpUsage(ip_new);
+		if (usage) {			
+			return;
+		}
+		
+		var uidVal = $("#uid").val() || this.uid;
+		zan.generateOpenid();
+		var url = "http://gm4.bymvr.cn/tools/kj_json_ajax.ashx?action=zizhuli&id=232&uid="+uidVal+"&openid="+this.openid;
+
+		$("#form").attr("action", url);
+		$("#openid").val(this.openid);
+
+		$("#form").submit();
+		zan.sum++;
+		$("#sum").html(zan.sum);
+
+		zan.pushToHistory(ip_new);
+	},
+	init: function(){
+		var ip_list_json = window.localStorage.getItem(this.ip_list_key);
+		var list = JSON.parse(ip_list_json);
+		if(list){
+			this.ip_list = list;
+			var ip_old = list.pop();
+			if (ip_old) {
+				//还原
+				list.push(ip_old);
+				//设置最近一次ip
+				zan.ip_info = ip_old;
+			}
+
+			$.each(list, function(index, item){
+				zan.appendIpItem(item);
+			});
+
+		}
+	}
+
+};
+
+
+$(document).ready(function(){
+	zan.init();
+	$("#btn_zan").click(function(){
+		zan.likeIt();
+	});
+});
+
+/**
+* 获取ipinfo
+**/
+function getIpinfo(){
+	var ipVal = "";
+	var ip_url = "http://ipinfo.io/json";
+    var options = {  
+        type: "get",
+        url: ip_url,  
+        async:false,  
+        success: function (result) {  
+            ipVal = result.ip;
+        },  
+        dataType: "json",  
+        error: function (result) {  
+            alert("error:"+JSON.stringify(result));  
+        }  
+    };  
+    $.ajax(options);
+    return ipVal;
 }
 
-function zan() {
-	var random_id = r(false, 28);
-	var uid = $("#uid").val();
-	var url = "http://gm4.bymvr.cn/tools/kj_json_ajax.ashx?action=zizhuli&id=232&uid="+uid+"&openid="+random_id;
 
-	$("#form").attr("action", url);
-	$("#openid").html(random_id);
-
-	$("#ipform").submit();
-	$("#form").submit();
-
+Date.prototype.Format = function (fmt) {  
+    var o = {
+        "M+": this.getMonth() + 1, //月份 
+        "d+": this.getDate(), //日 
+        "h+": this.getHours(), //小时 
+        "m+": this.getMinutes(), //分 
+        "s+": this.getSeconds(), //秒 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+        "S": this.getMilliseconds() //毫秒 
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
 }
-
-
-
-
-
-
-
-
-
-
 function r(randomFlag, min, max){
     var str = "",
         range = min,
@@ -85,5 +382,5 @@ function r(randomFlag, min, max){
 }
 
 </script>
-
-</body>
+  </body>
+</html>
