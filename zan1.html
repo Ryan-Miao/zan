@@ -1,0 +1,89 @@
+<head>
+
+</head>
+<body>
+
+
+
+
+
+
+<form action="http://1212.ip138.com/ic.asp" method="get" id="ipform" target="ip">
+	<input type="submit" value="get ip" />
+</form>
+<iframe id = "ipframe" name="ip" style="height: auto; width:auto;">
+<span id="ipspan"></span>
+</iframe>
+
+<hr/>
+
+
+
+<iframe name="result" style="height: 10%; width:100%;">
+
+</iframe>
+
+
+
+
+
+openid: <span id="openid"></span>
+<form method="post" target="result" id="form">
+	<input type="text" value ="58969" id = "uid"/>
+	<input type="button" value="generate" onclick="zan()"/>
+</form>
+
+
+
+
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+
+var sum = 0;
+
+function sip() {
+	$("#ipform").submit();
+}
+
+function zan() {
+	var random_id = r(false, 28);
+	var uid = $("#uid").val();
+	var url = "http://gm4.bymvr.cn/tools/kj_json_ajax.ashx?action=zizhuli&id=232&uid="+uid+"&openid="+random_id;
+
+	$("#form").attr("action", url);
+	$("#openid").html(random_id);
+
+	$("#ipform").submit();
+	$("#form").submit();
+
+}
+
+
+
+
+
+
+
+
+
+
+function r(randomFlag, min, max){
+    var str = "",
+        range = min,
+        arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', '_',
+'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+ 
+    // 随机产生
+    if(randomFlag){
+        range = Math.round(Math.random() * (max-min)) + min;
+    }
+    for(var i=0; i<range; i++){
+        pos = Math.round(Math.random() * (arr.length-1));
+        str += arr[pos];
+    }
+    return str;
+}
+
+</script>
+
+</body>
