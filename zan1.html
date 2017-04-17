@@ -309,6 +309,9 @@ var zan={
 				zan.ip_info = ip_old;
 			}
 
+			zan.sum = list.length;
+			$("#sum").html(zan.sum);
+
 			$.each(list, function(index, item){
 				zan.appendIpItem(item);
 			});
